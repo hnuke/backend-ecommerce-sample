@@ -18,5 +18,13 @@ Backend service for a e-commerce.
  - Product
  - Store
 
+## Database Model
+ - Product
+    - Name [string]
+    - Price [float]
+    - Image 
+    - Description [string]
+    - Store (To do in the future)
+
 ## Check
- - [] Basic CRUD
+ - [ ] Basic CRUD
