@@ -9,7 +9,7 @@ Backend service for a e-commerce.
 
 ## User Story
 
- - US01 - As a CLIENT I want to be able to acess my cart.
+ - US01 - As a CLIENT I want to be able to access my cart.
  - US02 - As a CLIENT I want to be able to add products to my cart.
  - US03 - As a STORE I want to be able to post my products.
 
