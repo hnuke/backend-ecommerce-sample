@@ -19,11 +19,10 @@ const usersSchema = mongoose.Schema({
     }
 }, {timestamps: true});
 
-const Users = mongoose.model('users', usersSchema);
 
 // Middleware
 
-Users.pre('save', () => {
+usersSchema.pre('save', function(next){
     const user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
@@ -43,12 +42,10 @@ Users.pre('save', () => {
     });
 });
 
-Users.methods.comparePassword = function(candidatePassword, cb){
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-        if (err) return cb(err);
-        cb(null, isMatch);
-    })
+usersSchema.methods.comparePassword = function(candidatePassword){
+    return bcrypt.compare(candidatePassword, this.password);
 }
 
 
+const Users = mongoose.model('users', usersSchema);
 export default Users;
