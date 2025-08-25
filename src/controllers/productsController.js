@@ -1,8 +1,12 @@
 import Products from '../models/productsModel.js';
 import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
 
 const getAllProducts = async (req, res) => {
     try {
+        const token = req.headers.authorization.replace('Bearer ', '');
+        await jwt.verify(token, process.env.SECRET_KEY);
+        req.token = token;
         const products = await Products.find();
         res.status(200).json({
             success: true,
