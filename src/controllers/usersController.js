@@ -12,7 +12,7 @@ const login = async (req, res) => {
     if (isMatch) {
         let token = jwt.sign({
             email: email 
-        },process.env.SECRET_KEY, {expiresIn: "1h"});
+        },process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION});
         return res.status(200).json({ success: true, token: token });
     }
     else return res.status(401).json({ message: "Unauthorized" });
