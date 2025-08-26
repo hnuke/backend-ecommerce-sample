@@ -12,6 +12,6 @@ router.post('/', authenticate, ProductsController.createProduct);
 
 router.patch('/:id', authenticate, ProductsController.updateProductById)
 
-router.delete('/:id', authenticate, ProductsController.deleteProductById)
+router.delete('/:id', authenticate, authorize(['admin']),ProductsController.deleteProductById)
 
 export default router;

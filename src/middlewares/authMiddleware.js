@@ -19,8 +19,8 @@ export const authorize = (roles = []) => {
     return (req, res, next) => {
         if (!roles.length) return next();
 
-        const userRoles = req.user?.roles || [];
-        const hasRole = roles.some(role => user.Roles.includes(role));
+        const userRoles = req.user?.role || [];
+        const hasRole = roles.some(role => userRoles.includes(role));
 
         if (!hasRole) return res.status(403).json({message: 'Access Denied'});
 

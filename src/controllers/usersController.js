@@ -2,7 +2,7 @@ import Users from '../models/usersModel.js';
 import jwt from 'jsonwebtoken';
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
     const user = await Users.findOne({ email });
     if (!user) return res.status(404).json({
         message: 'User not found'
@@ -11,9 +11,10 @@ const login = async (req, res) => {
 
     if (isMatch) {
         let token = jwt.sign({
-            email: email 
+            email: email,
+            role: user.role
         },process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION});
-        return res.status(200).json({ success: true, token: token });
+        return res.status(200).json({ success: true, token: token, email, role: user.role });
     }
     else return res.status(401).json({ message: "Unauthorized" });
 }
