@@ -2,8 +2,6 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 A backend headed for a E-commerce application, a sample product.
 
 While I'm doing the back-end for the E-commerce, I will be doing the front-end too.
