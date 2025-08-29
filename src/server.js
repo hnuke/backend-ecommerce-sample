@@ -18,5 +18,14 @@ import userRoutes from './routes/users.js';
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 
+// Last middleware for handling errors
+app.use((err,req,res, next) => { // Middleware for handling errors centrally
+    console.error(err.name);
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'A unexpected error has ocurred';
+    
+    res.status(statusCode).json({error: message});
+})
+
 // Start Server
 app.listen(port);
