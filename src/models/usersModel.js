@@ -7,6 +7,8 @@ const usersSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
+        trim: true,
+        minLength: 3
     },
     email: {
         type: String,
@@ -15,7 +17,9 @@ const usersSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minLength: 6
     },
     role: {
         type: String,
