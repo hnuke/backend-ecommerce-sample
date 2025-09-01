@@ -8,7 +8,7 @@ router.get('/', ProductsController.getAllProducts);
 
 router.get('/:id', ProductsController.getProductById);
 
-router.post('/', authenticate, authorize(['admin']), ProductsController.createProduct);
+router.post('/', authenticate, authorize(['admin']),  ProductsController.createProduct);
 
 router.patch('/:id', authenticate, authorize(['admin']), ProductsController.updateProductById)
 
