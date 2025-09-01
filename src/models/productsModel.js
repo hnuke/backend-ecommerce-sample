@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productsSchema = mongoose.Schema({
     name: {
@@ -18,7 +18,12 @@ const productsSchema = mongoose.Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
+    categoryId: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+        required: true
+    }]
 });
 
 const Products = mongoose.model("products", productsSchema);
