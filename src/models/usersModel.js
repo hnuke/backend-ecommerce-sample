@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-const SALT_WORK_FACTOR = 8;
+const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 
 const usersSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
