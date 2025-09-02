@@ -1,6 +1,8 @@
 import Products from '../models/productsModel.js';
 import mongoose from 'mongoose';
 
+// review code because of the new middleware for handling errors
+
 const getAllProducts = async (req, res) => {
     try {
         const products = await Products.find();
