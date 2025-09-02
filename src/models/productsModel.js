@@ -24,7 +24,7 @@ const productsSchema = mongoose.Schema({
         ref: 'categories',
         required: true
     }]
-});
+}, {strict: true});
 
 const Products = mongoose.model("products", productsSchema);
 
