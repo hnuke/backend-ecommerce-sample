@@ -15,7 +15,7 @@ const categoriesSchema = mongoose.Schema({
         trim: true,
         minLength: 8
     }
-});
+}, {strict: true});
 
 const Categories = mongoose.model("categories", categoriesSchema);
 
