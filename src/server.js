@@ -14,11 +14,13 @@ app.use(express.json()); // Middleware for parsing JSON
 import productRoutes from './routes/products.js';
 import userRoutes from './routes/users.js';
 import categoryRoutes from './routes/categories.js';
+import orderRoutes from './routes/orders.js';
 
 // Use route modules with base paths
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Last middleware for handling errors
 app.use((err,req,res, next) => { // Middleware for handling errors centrally
