@@ -1,4 +1,5 @@
 import Categories from "../models/categoriesModel.js";
+import Products from '../models/productsModel.js';
 import { NotFoundError } from "../errors/CustomErrors.js";
 class categoryController {
     async createCategory(req, res) {
@@ -8,6 +9,14 @@ class categoryController {
             success: true,
             category
         });
+    }
+
+    async getProductsByCategoryId(req, res){
+        const {id} = req.params;
+        const products = await Products.find({categoryId: id});
+        if (!products) throw new NotFoundError('Category not found');
+
+        res.status(200).json({success:true, products});
     }
 
     async updateCategoryById(req, res) {
