@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-
+import { ordersSchema } from './ordersModel.js';
 const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 
 const usersSchema = mongoose.Schema({
@@ -27,33 +27,36 @@ const usersSchema = mongoose.Schema({
         type: String,
         required: true,
         default: "user"
+    },
+    orders: {
+        type: [ordersSchema],
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 
 // Middleware
 
-usersSchema.pre('save', function(next){
+usersSchema.pre('save', function (next) {
     const user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
 
     // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
         if (err) return next(err);
-        
+
         // hash the password along with our new salt
-        bcrypt.hash(user.password, salt, function(err, hash){
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
-            
+
             // override the cleartext password with the hashed one
             user.password = hash;
             next();
         });
     });
-}, {strict: true});
+}, { strict: true });
 
-usersSchema.methods.comparePassword = function(candidatePassword){
+usersSchema.methods.comparePassword = function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 }
 

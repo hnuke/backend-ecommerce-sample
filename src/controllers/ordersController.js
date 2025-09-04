@@ -17,6 +17,11 @@ class ordersController {
         })
     }
 
+    async getOrder(req, res){
+        const {id} = req.params;
+        
+    }
+
     async updateOrder(req, res){
         const {id} = req.param;
         const {address} = req.body;

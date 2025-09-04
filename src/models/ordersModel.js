@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { productsSchema } from "./productsModel.js";
 
-const ordersSchema = mongoose.Schema({
+export const ordersSchema = mongoose.Schema({
     price: {
         type: Number,
         required: true,
