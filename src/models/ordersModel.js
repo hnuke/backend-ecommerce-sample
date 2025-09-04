@@ -16,7 +16,10 @@ const ordersSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    products: [productsSchema]
+    products: {
+        type: [productsSchema],
+        required: true
+    }
 });
 
 const Orders = mongoose.model('orders', ordersSchema);
