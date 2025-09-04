@@ -6,17 +6,18 @@ import { UnauthorizedError, NotFoundError } from '../errors/CustomErrors.js';
 const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await Users.findOne({ email });
-
     if (!user) throw new NotFoundError('User not found');
 
     const isMatch = await user.comparePassword(password);
+    const userId = user._id;
 
     if (isMatch) {
         let token = jwt.sign({
+            id: userId,
             email: email,
             role: user.role
         }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
-        return res.status(200).json({ success: true, token: token, email, role: user.role });
+        return res.status(200).json({ success: true, token: token, email, role: user.role});
     }
     else throw new UnauthorizedError('Unauthorized User');
 }

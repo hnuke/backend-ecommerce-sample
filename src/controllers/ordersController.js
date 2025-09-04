@@ -1,5 +1,7 @@
 import Orders from "../models/ordersModel.js";
+import Users from "../models/usersModel.js";
 import { NotFoundError } from "../errors/CustomErrors.js";
+
 class ordersController {
     async createOrder(req, res){
         const {
@@ -18,8 +20,16 @@ class ordersController {
     }
 
     async getOrder(req, res){
-        const {id} = req.params;
-        
+        const idUser = req.user?.id;
+        const user = await Users.findById(idUser);
+        if (!user) throw new NotFoundError('User not found');
+        const orders = user.orders;
+        if (!orders) throw new NotFoundError('Orders not found');
+
+        return res.status(200).json({
+            orders
+        })
+
     }
 
     async updateOrder(req, res){
