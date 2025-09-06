@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import { ordersSchema } from './ordersModel.js';
-import { cartSchema } from './cartMode.js';
+import { cartSchema } from './cartModel.js';
 const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
 
 const usersSchema = mongoose.Schema({
@@ -31,9 +31,13 @@ const usersSchema = mongoose.Schema({
     },
     orders: {
         type: [ordersSchema],
+        require: true,
+        default: null
     },
     cart: {
-        type: [cartSchema],
+        type: cartSchema,
+        required: true,
+        default: null
     }
 }, { timestamps: true });
 

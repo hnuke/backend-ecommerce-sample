@@ -22,7 +22,7 @@ const login = async (req, res) => {
     else throw new UnauthorizedError('Unauthorized User');
 }
 const register = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, address } = req.body;
     const errors = validationResult(req);
     
     // email validation
@@ -32,7 +32,7 @@ const register = async (req, res) => {
     if (user) return res.status(400).json({ message: 'email already exists' });
 
     // To do: Validate name, email, password, email duplicated in DB
-    await Users.create({ name, email, password });
+    await Users.create({ name, email, password, address});
     res.status(200).json({ success: true });
 }
 
