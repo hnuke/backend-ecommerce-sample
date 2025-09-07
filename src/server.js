@@ -15,12 +15,14 @@ import productRoutes from './routes/products.js';
 import userRoutes from './routes/users.js';
 import categoryRoutes from './routes/categories.js';
 import orderRoutes from './routes/orders.js';
+import cartRoutes from './routes/carts.js';
 
 // Use route modules with base paths
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/carts', cartRoutes);
 
 // Last middleware for handling errors
 app.use((err,req,res, next) => { // Middleware for handling errors centrally

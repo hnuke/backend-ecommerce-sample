@@ -22,22 +22,19 @@ const usersSchema = mongoose.Schema({
         required: true,
         trim: true,
         minLength: 6,
-        maxLength: 30
+        maxLength: 60
     },
     role: {
         type: String,
-        required: true,
         default: "user"
     },
     orders: {
         type: [ordersSchema],
-        require: true,
-        default: null
+        default: []
     },
     cart: {
         type: cartSchema,
-        required: true,
-        default: null
+        default: {}
     }
 }, { timestamps: true });
 

@@ -33,7 +33,7 @@ const register = async (req, res) => {
 
     // To do: Validate name, email, password, email duplicated in DB
     await Users.create({ name, email, password, address});
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, message: 'User created successfuly' });
 }
 
 const UsersController = {
