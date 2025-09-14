@@ -6,5 +6,6 @@ const router = express.Router();
 
 
 router.post('', authenticate, CartController.addItem);
-router.delete('/:productId', authenticate, CartController.removeItem);
+router.post('/edit', authenticate, CartController.updateItem)
+router.delete('', authenticate, CartController.removeItem);
 export default router;

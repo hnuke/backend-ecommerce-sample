@@ -7,6 +7,13 @@ export class AppError extends Error {
     }
 }
 
+export class BadRequestError extends AppError{
+    constructor(message){
+        super(message, 400);
+        this.name = 'BadRequestError'
+    }
+}
+
 export class UnauthorizedError extends AppError{
     constructor(message){
         super(message, 401);

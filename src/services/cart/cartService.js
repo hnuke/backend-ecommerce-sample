@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../errors/CustomErrors.js";
+import { BadRequestError, NotFoundError } from "../../errors/CustomErrors.js";
 
 class cartService {
     async addProductToCart(user, product) {
@@ -19,6 +19,18 @@ class cartService {
             item.productId.toString() === product.productId.toString()
         );
         if (index >= 0) userCart.items.splice(index, 1);
+        await user.save();
+        return userCart;
+    }
+
+    async updateQuantityProductCart(user, product, newQuantity) {
+        const userCart = user?.cart;
+        if (!userCart) throw new NotFoundError('Cart not found');
+        const index = userCart.items.findIndex(item =>
+            item.productId.toString() === product.productId.toString()
+        );
+        if (newQuantity < 1) throw new BadRequestError('Invalid value')
+        userCart.items[index].quantity = newQuantity;
         await user.save();
         return userCart;
     }
