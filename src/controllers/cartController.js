@@ -3,6 +3,20 @@ import CartService from "../services/cart/cartService.js"
 import Users from "../models/usersModel.js";
 
 class cartController {
+
+    async getItems(req, res) {
+        const userId = req.user?.id;
+        const user = await Users.findById(userId);
+        if (!user) throw new NotFoundError('User not found');
+        const cart = user?.cart;
+        if (!cart) throw new NotFoundError('Cart not found');
+        return res.status(200).json({
+            success: true,
+            cart
+        });
+
+    }
+
     async addItem(req, res, next) {
         const userId = req.user?.id;
         const user = await Users.findById(userId);

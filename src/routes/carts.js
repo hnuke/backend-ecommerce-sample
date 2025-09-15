@@ -4,7 +4,7 @@ import { authenticate } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-
+router.get('', authenticate, CartController.getItems)
 router.post('', authenticate, CartController.addItem);
 router.post('/edit', authenticate, CartController.updateItem)
 router.delete('', authenticate, CartController.removeItem);
