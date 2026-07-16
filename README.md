@@ -4,7 +4,10 @@
 
 A backend headed for a E-commerce application, a sample product.
 
-While I'm doing the back-end for the E-commerce, I will be doing the front-end too.
+## Structure
+
+CRUD with products, orders, users and categories models.
+
 
 ### Built With
 
@@ -15,20 +18,6 @@ While I'm doing the back-end for the E-commerce, I will be doing the front-end t
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-### Roadmap
-
-The project are in development and the next updates will be directed for those features:
-
-- [x] User and Product (CRUD, JWT, ENDPOINTS, MODELS)
-- [ ] Product Catalog
-- [ ] Shopping Cart
-- [ ] Order Management
-- [ ] Customs Try and Catch
-- [ ] Tests (Jest)
-- [ ] Logs (Winston)
-- [ ] CI/CD
-- [ ] Docker everything
 
 
 [Node.js]: https://img.shields.io/badge/node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
